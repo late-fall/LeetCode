@@ -3,18 +3,28 @@ class Solution:
 #         using minHeap
 #         Heapify - linear time algorithm
 # add them to minHeap and pop k times.
-        minHeap = []
-        for x,y in points:
-            dist = (x**2) + (y**2)
-            minHeap.append([dist,x,y])
+#         minHeap = []
+#         for x,y in points:
+#             dist = (x**2) + (y**2)
+#             minHeap.append([dist,x,y])
         
-        heapq.heapify(minHeap) #heapify the list
+#         heapq.heapify(minHeap) #heapify the list
+#         res = []
+#         while k > 0:
+#             dist, x, y = heapq.heappop(minHeap)
+#             res.append([x,y])
+#             k -= 1
+#         return res
         res = []
-        while k > 0:
-            dist, x, y = heapq.heappop(minHeap)
-            res.append([x,y])
-            k -= 1
-        return res
+        for x,y in points:
+            dist = x**2 + y**2
+            res.append([dist,x,y])
+        
+        res.sort(key=lambda x:x[0])
+        print(res)
+        
+        return [[i[1],i[2]] for i in res][:k]
+    
         
 # #         works but goes overtime
 #         res = [(points[0], points[0][0]**2 + points[0][1]**2)]
