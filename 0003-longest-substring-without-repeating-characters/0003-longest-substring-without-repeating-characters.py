@@ -19,14 +19,27 @@ class Solution:
         
         longest = 1
         l, r = 0, 1
-        temp = s[0]
+        temp = {s[l]}
         while r < len(s):
             if s[r] not in temp:
-                temp += s[r]
+                temp.add(s[r])
                 r += 1
             else:
                 l += 1
                 r = l + 1
-                temp = s[l]
+                temp = {s[l]}
             longest = max(longest, r -l)
         return longest
+    
+#         sliding window O(n), memory O(n) - Neetcode
+#         cSet = set()
+#         l = 0
+#         res = 0
+        
+#         for r in range(len(s)):
+#             while s[r] in cSet:
+#                 cSet.remove(s[l])
+#                 l += 1
+#             cSet.add(s[r])
+#             res = max(res, r - l + 1)
+#         return res
