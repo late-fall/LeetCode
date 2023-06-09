@@ -19,15 +19,15 @@ class Solution:
         
         longest = 1
         l, r = 0, 1
-        temp = {s[l]}
+        temp = s[0]
         while r < len(s):
             if s[r] not in temp:
-                temp.add(s[r])
+                temp += s[r]
                 r += 1
             else:
                 l += 1
                 r = l + 1
-                temp = {s[l]}
+                temp = s[l]
             longest = max(longest, r -l)
         return longest
     
