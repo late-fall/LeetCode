@@ -12,6 +12,7 @@ class Solution:
         
         levels = []
         level = 0
+        
         def findLvl(root, level):
             if root:
                 levels.append([root.val, level])
@@ -21,20 +22,6 @@ class Solution:
                 findLvl(root.right, level + 1)
         
         findLvl(root, level)
-        # print(levels)
-        
-        queue, res, temp = [], [], []
-        
-        queue.append(root)
-        
-        while len(queue) > 0:
-            res.append(queue[0].val)
-            node = queue.pop(0)
-            
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
         
         result = []
         
