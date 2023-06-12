@@ -10,8 +10,6 @@ class Solution:
         def dfs(crs):
             if crs in visited:
                 return False
-            if preHash[crs] == []:
-                return True
             
             visited.add(crs)
             for pre in preHash[crs]:
