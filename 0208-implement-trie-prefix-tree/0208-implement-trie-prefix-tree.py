@@ -6,7 +6,6 @@ class Trie:
     def insert(self, word: str) -> None:
         if len(word) == 0:
             self.alpha[26][0] = 1
-            self.alpha[26][1] = Trie()
             return
         index = ord(word[0]) - 97
         self.alpha[index][0] = 1
@@ -16,10 +15,7 @@ class Trie:
 
     def search(self, word: str) -> bool:
         if len(word) == 0:
-            if self.alpha[26][0] == 1:
-                return True
-            else:
-                return False
+            return self.alpha[26][0] == 1
         index = ord(word[0]) - 97
         if self.alpha[index][0] == 0:
             return False
