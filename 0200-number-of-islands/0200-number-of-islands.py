@@ -1,17 +1,19 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
 #         BFS
+
         rows, cols = len(grid), len(grid[0])
         visited = set()
         islands = 0
         
         def bfs(r, c):
-            q = collections.deque()
+            q = []
             visited.add((r,c))
             q.append((r,c))
             
             while q:
-                row, col = q.popleft()
+                row, col = q[0]
+                q = q[1:]
                 directions = [[1, 0], [-1, 0], [0,1], [0,-1]]
                 for dr, dc in directions:
                     if ((row + dr) in range(rows) and (col + dc) in range(cols) and grid[row + dr][col + dc] == "1" and (row + dr, col + dc) not in visited):
