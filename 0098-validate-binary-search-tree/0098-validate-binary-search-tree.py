@@ -1,23 +1,33 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+# # Definition for a binary tree node.
+# # class TreeNode:
+# #     def __init__(self, val=0, left=None, right=None):
+# #         self.val = val
+# #         self.left = left
+# #         self.right = right
+# class Solution:
+#     def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        
+#         minVal = -2**31 -1
+#         maxVal = 2**31
 
-#[1,1]
-#[5,4,6,null,null,3,7]
-#[1,null,3]
-#[5,1,6,null,null,4,7]
-#[2,1,4,7,4,8,3,6,4,7]
-#[10,5,15,null,null,6,20]
-#[32,26,47,19,null,null,56,null,27]
-#[0,-1]
-#[5,4,5]
-#[2147483647]
-#[0,null,-1]
-#[3,1,5,0,2,4,6]
-#[-2147483648]
+#         def isValid(root, minVal, maxVal):
+#             if not root.left and not root.right:
+#                 return True
+#             elif not root.left:
+#                 if root.right.val <= root.val or root.right.val >= maxVal:
+#                     return False
+#                 return isValid(root.right, root.val, maxVal)
+#             elif not root.right:
+#                 if root.left.val >= root.val or root.left.val <= minVal:
+#                     return False
+#                 return isValid(root.left, minVal, root.val)
+#             else:
+#                 if (root.left.val >= root.val or root.left.val <= minVal) or (root.right.val <= minVal or root.right.val >= maxVal):
+#                     return False
+#                 return isValid(root.left, root.left.val , maxVal) and isValid(root.right, minVal, root.right.val)
+        
+#         return isValid(root, minVal, maxVal)
+
 
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
