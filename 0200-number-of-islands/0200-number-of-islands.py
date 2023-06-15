@@ -16,9 +16,10 @@ class Solution:
                 q = q[1:]
                 directions = [[1, 0], [-1, 0], [0,1], [0,-1]]
                 for dr, dc in directions:
-                    if ((row + dr) in range(rows) and (col + dc) in range(cols) and grid[row + dr][col + dc] == "1" and (row + dr, col + dc) not in visited):
-                        q.append((row + dr, col + dc))
-                        visited.add((row + dr, col + dc))
+                    nr, nc = row + dr, col + dc # nr = neighbouring row, nc = neighbouring column.
+                    if (nr in range(rows) and nc in range(cols) and grid[nr][nc] == "1" and (nr, nc) not in visited):
+                        q.append((nr, nc))
+                        visited.add((nr, nc))
         
         for r in range(rows):
             for c in range(cols):
