@@ -1,13 +1,13 @@
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        rows = len(grid[0])
-        cols = len(grid)
+        rows = len(grid)
+        cols = len(grid[0])
         
         fresh_count = 0
         rottens = []
         
-        for x in range(cols):
-            for y in range(rows):
+        for x in range(rows):
+            for y in range(cols):
                 if grid[x][y] == 1:
                     fresh_count += 1
                 elif grid[x][y] == 2:
@@ -22,7 +22,7 @@ class Solution:
         while rottens:
             for r,c in rottens:
                 for dr, dc in directions:
-                    if (r + dr) in range(cols) and (c + dc) in range(rows) and grid[r+dr][c + dc] == 1:
+                    if (r + dr) in range(rows) and (c + dc) in range(cols) and grid[r+dr][c + dc] == 1:
                         grid[r+dr][c+dc] = 2
                         rotten_count += 1
                         tmp.append((r+dr,c+dc))
