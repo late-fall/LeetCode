@@ -1,10 +1,9 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        total = len(nums)
         
         # index, value
         l = 0
-        r = total - 1
+        r = len(nums) - 1
         
         while l <= r:
             mid = (l + r) // 2
