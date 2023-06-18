@@ -2,7 +2,7 @@ class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals = sorted(intervals, key=lambda x: x[0])
         def dfs(i, intervals):
-            if len(intervals) == 1 or i >= len(intervals) -1 or not intervals[i+1]:
+            if i >= len(intervals) -1 or not intervals[i+1]:
                 return intervals[:i+1]
             if intervals[i][1] >= intervals[i+1][0]: 
                 f1 = intervals[i][0]
