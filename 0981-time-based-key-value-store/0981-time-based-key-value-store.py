@@ -13,18 +13,21 @@ class TimeMap:
             return self.time_stamps[(key, timestamp)]
         else:
             if key in self.stamps:
-                temp = self.stamps[key][1]
+                time = self.stamps[key][1]
             else:
                 return ""
-            while timestamp < temp or (key, temp) not in self.time_stamps:
-                temp -= 1
-                if temp <0:
+            while timestamp < time or (key, time) not in self.time_stamps:
+                time -= 1
+                if time <0:
                     return ""
                 
-        return self.time_stamps[(key, temp)]
+        return self.time_stamps[(key, time)]
 
 
 # Your TimeMap object will be instantiated and called as such:
 # obj = TimeMap()
 # obj.set(key,value,timestamp)
 # param_2 = obj.get(key,timestamp)
+
+# neetcode solution:
+
