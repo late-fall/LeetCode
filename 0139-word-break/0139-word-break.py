@@ -1,14 +1,7 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-#         words = {}
-#         for w in wordDict:
-#             if w[0] not in words:
-#                 words[w[0]] = [w]
-#             else:
-#                 words[w[0]].append(w)
 
         tested = set()
-        
         que = []
         for word in wordDict:
             if s[:len(word)] == word:
@@ -19,13 +12,22 @@ class Solution:
             if len(item) == 0:
                 return True
             for word in wordDict:
-                if item[:len(word)] == word:
-                    if item[len(word):] not in tested:
-                        que.append(item[len(word):])
-                        tested.add(item[len(word):])
+                i = len(word)
+                if item[:i] == word:
+                    if item[i:] not in tested:
+                        que.append(item[i:])
+                        tested.add(item[i:])
                     
         return False
         
+        
+        ##my struggle to solve using hashmap and DFS
+#         words = {}
+#         for w in wordDict:
+#             if w[0] not in words:
+#                 words[w[0]] = [w]
+#             else:
+#                 words[w[0]].append(w)
         
         # def dfs(s):
         #     print(s)
