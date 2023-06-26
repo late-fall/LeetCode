@@ -17,9 +17,7 @@ class Solution:
                 if i not in visited:
                     visited.add(i)
                     temp = dfs(i, end, visited)
-                    if temp == -1:
-                        continue
-                    else:
+                    if temp != -1:
                         return graph[start][i] * temp
             return -1.0
         
