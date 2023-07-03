@@ -2,6 +2,7 @@ class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:        
         rows = len(board)
         cols = len(board[0])
+        visited = set()
         
         def checkWord(r,c,word):
             if board[r][c] == word:
@@ -21,8 +22,11 @@ class Solution:
         for i in range(rows):
             for j in range(cols):
                 if board[i][j] == word[0]:
-                    visited = set()
-                    res = checkWord(i,j,word)
-                    if res:
+                    visited.clear()
+                    if checkWord(i,j,word):
                         return True
         return False
+    
+    
+        #O(n * m * 4^len(word)) : since looking at 4 directions for length of word
+        
