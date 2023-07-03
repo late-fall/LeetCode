@@ -2,11 +2,6 @@ class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:        
         rows = len(board)
         cols = len(board[0])
-        start = []
-        for i in range(rows):
-            for j in range(cols):
-                if board[i][j] == word[0]:
-                    start.append((i,j))
         
         def checkWord(r,c,word):
             if board[r][c] == word:
@@ -22,10 +17,12 @@ class Solution:
                         return True
                 else:
                     visited.remove((r,c))
-                    
-        for row,col in start:
-            visited = set()
-            res = checkWord(row,col,word)
-            if res:
-                return True        
+    
+        for i in range(rows):
+            for j in range(cols):
+                if board[i][j] == word[0]:
+                    visited = set()
+                    res = checkWord(i,j,word)
+                    if res:
+                        return True
         return False
