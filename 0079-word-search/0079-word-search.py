@@ -2,8 +2,6 @@ class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:        
         rows = len(board)
         cols = len(board[0])
-        if rows * cols < len(word):
-            return False
         start = []
         for i in range(rows):
             for j in range(cols):
