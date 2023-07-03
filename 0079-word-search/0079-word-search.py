@@ -23,8 +23,7 @@ class Solution:
                 else:
                     visited.remove((r,c))
                     
-        for pt in start:
-            row, col = pt
+        for row,col in start:
             visited = set()
             res = checkWord(row,col,word)
             if res:
