@@ -9,9 +9,7 @@ class Solution:
     # uses queue to keep track of nums of each letters and use queue. 
     
         count = Counter(tasks)
-        print(count)
         maxHeap = [-cnt for cnt in count.values()]
-        print(maxHeap)
         heapq.heapify(maxHeap)
 
         time = 0
