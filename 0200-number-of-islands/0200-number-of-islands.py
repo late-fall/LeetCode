@@ -1,56 +1,36 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-#         BFS
-
-        rows, cols = len(grid), len(grid[0])
-        visited = set()
-        islands = 0
+        rows = len(grid)
+        cols = len(grid[0])
         
-        def bfs(r, c):
+        visited = set()
+        
+        def bfs(grid, r, c):
             q = []
-            visited.add((r,c))
             q.append((r,c))
+            visited.add((r,c))
             
             while q:
-                row, col = q[0]
-                q = q[1:]
-                directions = [[1, 0], [-1, 0], [0,1], [0,-1]]
-                for dr, dc in directions:
-                    nr, nc = row + dr, col + dc # nr = neighbouring row, nc = neighbouring column.
-                    if (nr in range(rows) and nc in range(cols) and grid[nr][nc] == "1" and (nr, nc) not in visited):
-                        q.append((nr, nc))
-                        visited.add((nr, nc))
+                r, c = q.pop(0)
+                if r + 1 < rows and grid[r+1][c] == "1" and (r+1,c) not in visited:
+                    q.append((r+1, c))
+                    visited.add((r+1,c))
+                if r - 1 >= 0  and grid[r-1][c] == "1" and (r-1,c) not in visited:
+                    q.append((r-1, c))
+                    visited.add((r-1,c))
+                if c + 1 < cols and grid[r][c+1] == "1" and (r,c+1) not in visited:
+                    q.append((r, c+1))
+                    visited.add((r,c+1))
+                if c - 1 >= 0  and grid[r][c-1] == "1" and (r,c-1) not in visited:
+                    q.append((r, c-1))
+                    visited.add((r,c-1))
+            
+        cnt = 0 
         
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == "1" and (r,c) not in visited:
-                    bfs(r, c)
-                    islands += 1
-        return islands
-    
+        for x in range(rows):
+            for y in range(cols):
+                if grid[x][y] == "1" and (x,y) not in visited:
+                    bfs(grid, x, y)
+                    cnt += 1
         
-#         m = len(grid[0])
-#         n = len(grid)
-        
-#         grid = [list( map(int,i) ) for i in grid]
-#         islands = 0
-        
-#         for x in range(n):
-#             for y in range(m):
-#                 if grid[x][y] >= 1:
-#                     if not ((x > 0 and grid[x-1][y] >= 1) or (y > 0 and grid[x][y-1] >= 1)):
-#                         if not ((x < n -1 and grid[x+1][y] > 1) or (y < m - 1 and grid[x][y+1] > 1)):
-#                             islands += 1
-#                     if (x < n -1 and grid[x+1][y] >= 1):
-#                         grid[x+1][y] += 1
-#                     if (y < m -1 and grid[x][y+1] >= 1):
-#                         grid[x][y+1] += 1
-#         return islands
-    
-    
-    
-     # elif x < n - 1 and grid[x+1][y] == "1":
-     #     continue
-    
-     # elif y < m - 1 and grid[x][y+1] == "1":
-     #     continue
+        return cnt
