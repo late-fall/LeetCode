@@ -16,33 +16,16 @@ class Solution:
         
         oldToNew = {} #hashmap to map old to new
         
-        def clone(node):
-            if node in oldToNew: #means we already made a clone of it.
+        def copyGraph(node):
+            if node in oldToNew:
                 return oldToNew[node]
             
             copy = Node(node.val)
             oldToNew[node] = copy
             for n in node.neighbors:
-                copy.neighbors.append(clone(n))
+                copy.neighbors.append(copyGraph(n))
             return copy
+            
+        return copyGraph(node) if node else None
         
-        return clone(node) if node else None
-        
-        # copy_node = Node()
-        # def copyGraph(node):
-        #     if len(node.neighbors) == 0:
-        #         return []
-        #     copy_node.val = node.val
-        #     copy_node.neighbors = node.neighbors
-        #     for n in node.neighbors:
-        #         copyGraph(n)
-        # copyGraph(node)
-        
-        # adjlist = []
-        # node_adj = []
-        # for n in node.neighbors:
-        #     node_adj.append(n.val)
-        # a = node_adj
-        # print(a)
-        return copy_node
         
