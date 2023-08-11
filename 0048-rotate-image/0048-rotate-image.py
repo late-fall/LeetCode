@@ -3,29 +3,19 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        
         l, r = 0, len(matrix) - 1
         
-        while l < r: # run the rotation
-            for i in range(r - l): # need to do n - 1 rotations
-                # i is handling the rotation by moving to the next value. 
-                top, bottom = l, r
+        while l < r:
+            for i in range(r-l):
+                top,bot = l, r
                 
-                # save top left value, serving as a temporary
-                topLeft = matrix[top][l + i]
-                
-                # move bottom left to top left
-                matrix[top][l + i] = matrix[bottom - i][l]
-                
-                matrix[bottom - i][l] = matrix[bottom][r - i]
-                
-                matrix[bottom][r- i] = matrix[top+i][r]
-                
-                matrix[top+i][r] = topLeft
-            
-            # to do subproblem
-            r -= 1
+                temp = matrix[top][l+i]
+                matrix[top][l+i] = matrix[bot-i][l]
+                matrix[bot-i][l] = matrix[bot][r-i]
+                matrix[bot][r-i] = matrix[top+i][r]
+                matrix[top+i][r] = temp
             l += 1
+            r -= 1
         
 #         visited = set()
         
