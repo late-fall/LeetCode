@@ -9,11 +9,12 @@ class Solution:
             for i in range(r-l):
                 top,bot = l, r
                 
-                temp = matrix[top][l+i]
-                matrix[top][l+i] = matrix[bot-i][l]
-                matrix[bot-i][l] = matrix[bot][r-i]
-                matrix[bot][r-i] = matrix[top+i][r]
-                matrix[top+i][r] = temp
+#                 temp = matrix[top][l+i]
+#                 matrix[top][l+i] = matrix[bot-i][l]
+#                 matrix[bot-i][l] = matrix[bot][r-i]
+#                 matrix[bot][r-i] = matrix[top+i][r]
+#                 matrix[top+i][r] = temp
+                matrix[top][l+i], matrix[bot-i][l], matrix[bot][r-i], matrix[top+i][r] = matrix[bot-i][l], matrix[bot][r-i], matrix[top+i][r], matrix[top][l+i]
             l += 1
             r -= 1
         
