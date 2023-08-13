@@ -1,9 +1,7 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         def restVal(chr_dict):
-            val = list(chr_dict.values())
-            val.sort()
-            return sum(val) - val[-1]
+            return sum(chr_dict.values()) - max(chr_dict.values())
         
         start = 0
         longest = 0
