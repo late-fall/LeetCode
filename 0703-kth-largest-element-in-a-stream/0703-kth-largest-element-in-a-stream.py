@@ -15,16 +15,13 @@ class KthLargest:
             if self.nums[i] > self.maxheap[0]:
                 heappop(self.maxheap)
                 heappush(self.maxheap,nums[i])
-        
-        print(self.maxheap)
 
     def add(self, val: int) -> int:
         if len(self.maxheap) == 0:
             heappush(self.maxheap,val)
-        if len(self.maxheap) < self.k:
+        elif len(self.maxheap) < self.k:
             heappush(self.maxheap,val)
-            return self.maxheap[0]
-        if val > self.maxheap[0]:
+        elif val > self.maxheap[0]:
             heappop(self.maxheap)
             heappush(self.maxheap, val)
         return self.maxheap[0]
