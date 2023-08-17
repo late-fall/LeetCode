@@ -6,8 +6,7 @@ class Solution:
         d1 = Counter(s1)
         d2 = Counter(s2[:len(s1)])
         
-        l = 0
-        r = len(s1) - 1
+        l, r = 0, len(s1) - 1
         
         while r < len(s2):
             if d1 == d2:
