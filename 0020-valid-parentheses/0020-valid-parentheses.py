@@ -28,15 +28,16 @@ class Solution:
 #         O(N), O(N)
         
 #         NEETCODE
-        stack= []
-        closeToOpen = {")": "(", "]":"[","}":"{"}
-        open = {"(", "[", "{"}
+        parens = {")":"(","]":"[","}":"{"}
+    
+        stk = []
+        
         for c in s:
-            if c in closeToOpen:
-                if stack and stack[-1] == closeToOpen[c]:
-                    stack.pop()
-                else:
+            if c in parens:
+                if not stk or parens[c] != stk.pop():
                     return False
-            elif c in open:
-                stack.append(c)
-        return True if not stack else False #to make sure it's empty 
+            else:
+                stk.append(c)
+        
+        return len(stk) == 0
+                
