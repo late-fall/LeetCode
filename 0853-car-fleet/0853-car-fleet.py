@@ -4,7 +4,7 @@ class Solution:
         for i in range(len(position)):
             sec.append([position[i], (target - position[i]) / speed[i]])
         
-        sec.sort(key=lambda x: x[0])
+        sec.sort()
         
         stk = []
         for s in sec:
