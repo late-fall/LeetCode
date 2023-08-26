@@ -12,10 +12,9 @@ class Solution:
                 bot = row - 1
             else:
                 break
-        # while row < rows and target > matrix[row][0]:
-        #     if row + 1 <= rows and target < matrix[row+1][0]:
-        #         break
-        #     row += 1
+                
+        if not top <= bot:
+            return False
         
         l = 0
         r = len(matrix[0]) - 1
