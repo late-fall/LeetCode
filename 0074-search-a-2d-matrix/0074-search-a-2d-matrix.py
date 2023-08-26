@@ -13,8 +13,6 @@ class Solution:
             else:
                 break
                 
-        if not top <= bot:
-            return False
         
         l = 0
         r = len(matrix[0]) - 1
