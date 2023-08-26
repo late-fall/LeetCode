@@ -1,17 +1,18 @@
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
         res = []
-        part = []
+        subset = []
         
-        def backtrack(i):
+        def back(i):
             if i == len(s):
-                res.append(part[::])
+                res.append(subset[::])
                 return
             for j in range(i,len(s)):
                 if ispal(s[i:j+1]):
-                    part.append(s[i:j+1])
-                    backtrack(j+1)
-                    part.pop()
+                    subset.append(s[i:j+1])
+                    back(j+1)
+                    subset.pop()
+        
         
         def ispal(s):
             l, r = 0, len(s) - 1
@@ -22,5 +23,5 @@ class Solution:
                 r -= 1
             return True
         
-        backtrack(0)
+        back(0)
         return res
