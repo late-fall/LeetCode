@@ -1,11 +1,21 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        row = 0
-        rows = len(matrix) - 1
-        while row < rows and target > matrix[row][0]:
-            if row + 1 <= rows and target < matrix[row+1][0]:
+                
+        top = 0
+        bot = len(matrix) - 1
+        
+        while top <= bot:
+            row = (top + bot) // 2
+            if target > matrix[row][-1]:
+                top = row + 1
+            elif target < matrix[row][0]:
+                bot = row - 1
+            else:
                 break
-            row += 1
+        # while row < rows and target > matrix[row][0]:
+        #     if row + 1 <= rows and target < matrix[row+1][0]:
+        #         break
+        #     row += 1
         
         l = 0
         r = len(matrix[0]) - 1
