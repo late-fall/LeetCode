@@ -2,37 +2,49 @@ class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         rows = len(grid)
         cols = len(grid[0])
-        fresh_count = 0
-        rottens = []
+        
+        rots =[]
+        
+        for x in range(rows):
+            for y in range(cols):
+                if grid[x][y] == 2:
+                    rots.append((x,y))
+        
+        directions = [[1,0],[-1,0],[0,1],[0,-1]]
+        
+        def bfs(rots):
+            q= deque()
+            for r,c in rots:
+                q.append((r,c))
+            time = -1
+            
+            while q:
+                for _ in range(len(q)):
+                    row, col = q.popleft()
+                    for dr,dc in directions:
+                        if row + dr in range(rows) and col + dc in range(cols) and grid[row+dr][col+dc] == 1:
+                            q.append((row+dr,col+dc))
+                            grid[row+dr][col+dc] = 2
+                time += 1
+            
+            return time
+
+#         def dfs(row, col,t):
+#             for dr, dc in directions:
+#                 if row + dr in range(rows) and col + dc in range(cols) and grid[row+dr][col+dc] == 1:
+#                     grid[row+dr][col+dc] = 2
+#                     dfs(row+dr,col+dc, t+1)
+#             return t
+        
+        t = 0
+        
+        t = max(t,bfs(rots))
+        
+        print(grid)
         
         for x in range(rows):
             for y in range(cols):
                 if grid[x][y] == 1:
-                    fresh_count += 1
-                elif grid[x][y] == 2:
-                    rottens.append((x,y))
-        
-        directions = [[1,0], [-1,0], [0,-1],[0,1]]
-        tmp = []
-        minute = 0
-        
-        while rottens:
-            for r,c in rottens:
-                for dr, dc in directions:
-                    if (r + dr) in range(rows) and (c + dc) in range(cols) and grid[r+dr][c + dc] == 1:
-                        grid[r+dr][c+dc] = 2
-                        fresh_count -= 1
-                        tmp.append((r+dr,c+dc))
-            if tmp:
-                minute += 1
-            rottens = tmp
-            tmp = []
-        
-        return minute if fresh_count == 0 else -1
-    
-    
-    # DFS won't work for this case. 
-    # BFS is helpful. 
-    # multi-source BFS
-    # using queue data structure. 
-    # keep track of how many fresh oranges there are 
+                    return - 1
+                
+        return t
