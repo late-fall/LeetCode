@@ -28,23 +28,12 @@ class Solution:
                 time += 1
             
             return time
-
-#         def dfs(row, col,t):
-#             for dr, dc in directions:
-#                 if row + dr in range(rows) and col + dc in range(cols) and grid[row+dr][col+dc] == 1:
-#                     grid[row+dr][col+dc] = 2
-#                     dfs(row+dr,col+dc, t+1)
-#             return t
         
         t = 0
-        
         t = max(t,bfs(rots))
-        
-        print(grid)
         
         for x in range(rows):
             for y in range(cols):
                 if grid[x][y] == 1:
-                    return - 1
-                
+                    return -1
         return t
