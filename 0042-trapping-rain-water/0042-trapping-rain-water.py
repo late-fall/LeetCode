@@ -3,10 +3,6 @@ class Solution:
         waterset = set()
         
         l = 0 
-        
-        #set the starting point
-        while l < len(height) and height[l] == 0:
-            l += 1
             
         r = l + 1
         gr = 0
@@ -27,8 +23,6 @@ class Solution:
             r += 1
             
         b = len(height) - 1
-        while r < len(height) and height[b] == 0:
-            b -= 1
         f = b - 1
         gr = 0
         while f >= 0:
