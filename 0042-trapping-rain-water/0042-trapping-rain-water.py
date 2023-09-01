@@ -1,12 +1,12 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
         waterset = set()
-        
-        l = 0 
-            
-        r = l + 1
         gr = 0
         water = 0
+        
+        # run front to back. 
+        l = 0 
+        r = l + 1
         while r < len(height):
             if height[r] >= height[l]:
                 if r - l == 1:
@@ -19,9 +19,9 @@ class Solution:
                     gr = 0
             else: 
                 gr += height[r]
-            
             r += 1
-            
+        
+        # run back to front. Make sure to omit the same water that was calculated
         b = len(height) - 1
         f = b - 1
         gr = 0
@@ -37,7 +37,6 @@ class Solution:
                     gr = 0
             else:
                 gr += height[f]
-            
             f -= 1
         
         return water
