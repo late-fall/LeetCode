@@ -1,22 +1,18 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
         waterset = set()
-        gr = 0
-        water = 0
+        gr, water = 0, 0
         
         # run front to back. 
         l = 0 
         r = l + 1
         while r < len(height):
             if height[r] >= height[l]:
-                if r - l == 1:
-                    l = r
-                else:
+                if r - l >1:
                     waterset.add((l,r))
-                    width = r - l - 1
-                    water += width * min(height[r],height[l]) - gr
-                    l = r
+                    water += (r - l - 1) * min(height[r],height[l]) - gr
                     gr = 0
+                l = r
             else: 
                 gr += height[r]
             r += 1
@@ -27,14 +23,11 @@ class Solution:
         gr = 0
         while f >= 0:
             if height[f] >= height[b]:
-                if b - f == 1:
-                    b = f
-                else:
+                if b - f > 1:
                     if (f,b) not in waterset:
-                        width = b - f - 1
-                        water += width * min(height[b],height[f]) - gr
-                    b = f
+                        water += (b - f - 1) * min(height[b],height[f]) - gr
                     gr = 0
+                b = f
             else:
                 gr += height[f]
             f -= 1
