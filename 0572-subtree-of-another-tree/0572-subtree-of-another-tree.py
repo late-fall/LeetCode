@@ -6,9 +6,6 @@
 #         self.right = right
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        # a = root.val
-        # b = subRoot.val
-        
         
         def checksub(root,subRoot):
             if not root and not subRoot:
@@ -17,7 +14,6 @@ class Solution:
                 return False
             return checksub(root.left,subRoot.left) and checksub(root.right,subRoot.right)
         
-        res = []
         q = deque()
         q.append(root)
         while q:
@@ -25,8 +21,8 @@ class Solution:
             if node:
                 if node.val == subRoot.val:
                     if checksub(node,subRoot):
-                        res.append(1)
+                        return True
                 q.append(node.left)
                 q.append(node.right)
-        return 1 in res
+        return False
         
