@@ -15,6 +15,8 @@ class Solution:
                 if root.left:
                     dfs(root.left, vals)
                 vals.append(root.val)
+                if len(vals) == k:
+                    return
                 if root.right:
                     dfs(root.right, vals)
             
