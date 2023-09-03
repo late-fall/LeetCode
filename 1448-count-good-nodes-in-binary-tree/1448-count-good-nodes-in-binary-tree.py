@@ -11,9 +11,7 @@ class Solution:
             if not root:
                 return 0
             maxval = max(root.val, maxval)
-            if root.val >= maxval:
-                return dfs(root.left, maxval) + dfs(root.right, maxval) + 1
-            else:
-                return dfs(root.left, maxval) + dfs(root.right, maxval)
+            count = dfs(root.left, maxval) + dfs(root.right, maxval)
+            return count if root.val < maxval else count + 1
         
         return dfs(root, root.val)
