@@ -3,9 +3,7 @@ class Solution:
         if t == "": 
             return ""
         
-        countT, window = {}, {}
-        for c in t:
-            countT[c] = 1 + countT.get(c,0)
+        countT, window = Counter(t), {}
         
         have, need = 0, len(countT)
         res, resLen = [-1,-1], float('inf')
