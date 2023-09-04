@@ -3,14 +3,15 @@ class Solution:
         if t == "": 
             return ""
         
-        countT, window = Counter(t), {}
+        countT, window = Counter(t), collections.defaultdict(int)
         
         have, need = 0, len(countT)
         res, resLen = [-1,-1], float('inf')
+        
         l = 0
         for r in range(len(s)):
             c = s[r]
-            window[c] = 1 + window.get(c, 0)
+            window[c] += 1
             
             if c in countT and window[c] == countT[c]:
                 have += 1
