@@ -8,7 +8,7 @@ class Solution:
         dp = set()
         dp.add(0)
         
-        for i in range(len(nums) - 1, -1, -1):
+        for i in range(len(nums)):
             nextDP = set()
             for t in dp:
                 if (t + nums[i]) == val:
