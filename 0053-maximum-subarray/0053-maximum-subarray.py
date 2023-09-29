@@ -2,7 +2,7 @@ class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
 #         1) can do brute force, calculate every subarray
 #         - won't be very efficient, O(N^2)
-#         "sliding window" - O(n)
+#         "sliding window" - O(n), Kadane's algorithm
 
         maxSub = nums[0]
         curSum = 0 #initial
