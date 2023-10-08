@@ -8,12 +8,12 @@ class Solution:
         dp = set()
         dp.add(0)
         
-        for i in range(len(nums)):
+        for n in nums:
             nextDP = set()
             for t in dp:
-                if (t + nums[i]) == val:
+                if (t + n) == val:
                     return True
-                nextDP.add(t+nums[i])
+                nextDP.add(t+n)
                 nextDP.add(t)
             dp = nextDP
         return False
