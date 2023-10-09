@@ -6,17 +6,13 @@ class Solution:
             if idx == len(nums):
                 return 1 if subtarget == target else 0
             
-            if (idx+1,subtarget+nums[idx]) in cache:
-                plus = cache[(idx+1, subtarget+nums[idx])]
-            else:
-                plus = cache[(idx+1, subtarget+nums[idx])] = backtrack(idx+1, subtarget + nums[idx])
+            if (idx+1,subtarget+nums[idx]) not in cache:
+                cache[(idx+1, subtarget+nums[idx])] = backtrack(idx+1, subtarget + nums[idx])
                 
-            if (idx+1,subtarget-nums[idx]) in cache:
-                minus = cache[(idx+1, subtarget-nums[idx])]
-            else:
-                minus = cache[(idx+1, subtarget-nums[idx])] = backtrack(idx+1, subtarget - nums[idx])
+            if (idx+1,subtarget-nums[idx]) not in cache:
+                cache[(idx+1, subtarget-nums[idx])] = backtrack(idx+1, subtarget - nums[idx])
             
-            return plus + minus
+            return cache[(idx+1, subtarget+nums[idx])] + cache[(idx+1, subtarget-nums[idx])]
         
         return backtrack(0,0)
             
