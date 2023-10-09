@@ -4,21 +4,17 @@ class Solution:
         
         def backtrack(idx, subtarget):
             if idx == len(nums):
-                if subtarget == target:
-                    return 1
-                return 0
+                return 1 if subtarget == target else 0
             
-            if (idx+1,subtarget+nums[idx]) not in cache:
-                plus = backtrack(idx+1, subtarget + nums[idx])
-                cache[(idx+1, subtarget+nums[idx])] = plus
-            else:
+            if (idx+1,subtarget+nums[idx]) in cache:
                 plus = cache[(idx+1, subtarget+nums[idx])]
-                
-            if (idx+1,subtarget - nums[idx]) not in cache:
-                minus = backtrack(idx+1, subtarget - nums[idx])
-                cache[(idx+1, subtarget - nums[idx])] = minus
             else:
-                minus = cache[(idx+1, subtarget - nums[idx])]
+                plus = cache[(idx+1, subtarget+nums[idx])] = backtrack(idx+1, subtarget + nums[idx])
+                
+            if (idx+1,subtarget-nums[idx]) in cache:
+                minus = cache[(idx+1, subtarget-nums[idx])]
+            else:
+                minus = cache[(idx+1, subtarget-nums[idx])] = backtrack(idx+1, subtarget - nums[idx])
             
             return plus + minus
         
