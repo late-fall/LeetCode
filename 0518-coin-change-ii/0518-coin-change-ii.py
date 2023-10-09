@@ -20,6 +20,4 @@ class Solution:
                 change2 = dp[c-1][amt]
                 dp[c][amt] = change1 + change2               
         
-        print(dp)
-        
         return dp[n-1][amount]
