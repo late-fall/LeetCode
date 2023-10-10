@@ -19,5 +19,4 @@ class Solution:
             
             return dp[(i, status)]
         
-        print(dp)
         return backtrack('short',0)
