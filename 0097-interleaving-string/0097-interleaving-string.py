@@ -4,7 +4,7 @@ class Solution:
             return False
 
         dp = [[False] * (len(s2) + 1) for i in range(len(s1) + 1)]
-        dp[len(s1)][len(s2)] = True
+        dp[len(s1)][len(s2)] = True # when it's empty string, and s3 is empty also due to prev condition.
 
         for i in range(len(s1), -1, -1):
             for j in range(len(s2), -1, -1):
