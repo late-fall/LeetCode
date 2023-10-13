@@ -6,9 +6,8 @@ class Solution:
             return False
         
         handMap = Counter(hand)
-        handHeap = []
-        for key in handMap.keys():
-            heapq.heappush(handHeap, key)
+        handHeap = list(handMap.keys())
+        heapq.heapify(handHeap)
         
         while handHeap:
             first = handHeap[0]
