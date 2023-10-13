@@ -21,7 +21,7 @@ class Solution:
                     if i != handHeap[0]:
                         return False
                     heapq.heappop(handHeap)
-                           
+        
         return True
         
 #         if len(hand) % groupSize != 0:
