@@ -17,9 +17,6 @@ class Solution:
 
         for x in range(1,r):
             for y in range(1,c):
-                if obstacleGrid[x][y] == 1:
-                    dp[x][y] = 0
-                else:
-                    dp[x][y] = dp[x-1][y] + dp[x][y-1]
-
+                dp[x][y] = dp[x-1][y] + dp[x][y-1] if obstacleGrid[x][y] != 1 else 0
+                
         return dp[r-1][c-1]
