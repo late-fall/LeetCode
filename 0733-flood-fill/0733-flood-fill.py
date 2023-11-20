@@ -8,8 +8,7 @@ class Solution:
         def fill(r, c, color):
             if r >= rows or r < 0 or c >= cols or c < 0 or (r,c) in visited or image[r][c] != original:
                 return
-            if image[r][c] != color:
-                image[r][c] = color
+            image[r][c] = color
             visited.add((r,c))
             fill(r+1, c, color)
             fill(r-1, c, color)
