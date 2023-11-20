@@ -11,9 +11,8 @@ class Solution:
         
         for i in range(1,n):
             for j in range(1,amount + 1):
+                dp[i][j] = dp[i-1][j]
                 if j >= coins[i]:
-                    dp[i][j] = dp[i-1][j] + dp[i][j-coins[i]]
-                else:
-                    dp[i][j] = dp[i-1][j]
+                    dp[i][j] += dp[i][j-coins[i]]
             
         return dp[n-1][amount]
