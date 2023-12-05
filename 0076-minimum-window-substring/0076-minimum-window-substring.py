@@ -3,7 +3,8 @@ class Solution:
         if t == "": 
             return ""
         
-        countT, window = Counter(t), collections.defaultdict(int)
+        countT = Counter(t) 
+        window = collections.defaultdict(int)
         
         need = len(countT)
         res, resLen = [-1,-1], float('inf')
@@ -13,7 +14,7 @@ class Solution:
             c = s[r]
             window[c] += 1
             
-            if c in countT and window[c] == countT[c]:
+            if window[c] == countT[c]:
                 need -= 1
             
             while need == 0:
