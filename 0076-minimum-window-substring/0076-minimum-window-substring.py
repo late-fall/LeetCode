@@ -5,7 +5,7 @@ class Solution:
         
         countT, window = Counter(t), collections.defaultdict(int)
         
-        have, need = 0, len(countT)
+        need = len(countT)
         res, resLen = [-1,-1], float('inf')
         
         l = 0
@@ -14,15 +14,15 @@ class Solution:
             window[c] += 1
             
             if c in countT and window[c] == countT[c]:
-                have += 1
-                
-            while have == need:
+                need -= 1
+            
+            while need == 0:
                 if (r - l + 1) < resLen:
                     res = [l, r]
                     resLen = r - l + 1
                 window[s[l]] -= 1
                 if s[l] in countT and window[s[l]] < countT[s[l]]:
-                    have -= 1
+                    need += 1
                 l += 1
         
         l, r = res
