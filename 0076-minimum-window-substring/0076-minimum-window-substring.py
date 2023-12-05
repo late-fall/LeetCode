@@ -25,8 +25,7 @@ class Solution:
                     need += 1
                 l += 1
         
-        l, r = res
-        return s[l:r+1] if resLen != float('inf') else ""
+        return s[res[0]:res[1]+1] if resLen != float('inf') else ""
         
         
 #         if len(t) > len(s):
