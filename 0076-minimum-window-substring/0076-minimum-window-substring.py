@@ -17,12 +17,12 @@ class Solution:
             if window[c] == countT[c]:
                 need -= 1
             
-            while need == 0:
+            while need == 0: # you found all the letters
                 if (r - l + 1) < resLen:
                     res = [l, r]
                     resLen = r - l + 1
-                window[s[l]] -= 1
-                if s[l] in countT and window[s[l]] < countT[s[l]]:
+                window[s[l]] -= 1 #remove the left-most from the window
+                if window[s[l]] < countT[s[l]]:
                     need += 1
                 l += 1
         
