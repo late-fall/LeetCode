@@ -10,19 +10,21 @@ class Solution:
         # for e.g., if ltMax <rtMax, we don't need to know what rtMax is since it doesn't affect equation.
         # water height will still be min(leftMax, rightMax) - height[i] where leftMax - height[i]
         
-        l, r = 0, len(height) - 1
-        ltMax, rtMax = height[l], height[r]
-        res = 0
+        lt, rt = 0, len(height) - 1
+        ltMax = height[lt]
+        rtMax = height[rt]
         
-        while l < r:
-            if ltMax < rtMax:
-                l += 1
-                ltMax = max(ltMax, height[l])
-                res += ltMax - height[l]
+        water = 0
+        
+        while lt < rt:
+            if ltMax <= rtMax:
+                lt += 1
+                ltMax = max(ltMax, height[lt])
+                water += ltMax - height[lt]
             else:
-                r -= 1
-                rtMax = max(rtMax, height[r])
-                res += rtMax - height[r]
-        return res
-            
-            
+                rt -= 1
+                rtMax = max(rtMax, height[rt])
+                water += rtMax - height[rt]
+        
+        return water
+        
