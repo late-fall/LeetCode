@@ -11,11 +11,12 @@ class MedianFinder:
 
     def findMedian(self) -> float:
         n = len(self.arr)
+        mid = n // 2
         self.even = (n % 2 == 0)
         if not self.even:
-            return float(self.arr[n//2])
+            return float(self.arr[mid])
         else:
-            medians = self.arr[n//2-1:n//2+1]
+            medians = self.arr[mid-1:mid+1]
             return (medians[0] + medians[1]) / 2
 
 # Your MedianFinder object will be instantiated and called as such:
