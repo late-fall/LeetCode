@@ -20,11 +20,11 @@ class Solution:
         
         while q:
             for _ in range(len(q)):
-                wordCount = q.popleft()
-                if endWord == wordCount:
+                word = q.popleft()
+                if endWord == word:
                     return res
                 for w in wordList:
-                    if dif_single(wordCount, w) and w not in q:
+                    if dif_single(word, w) and w not in q:
                         q.append(w)
             for w in q:
                 wordList.remove(w)
