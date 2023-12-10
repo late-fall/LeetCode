@@ -15,4 +15,4 @@ class Solution:
 #     memory issues can be solved by sorting it first. 
 #     Interviews often assume sorting doesn't take extray memory usually. 
     
-        return sorted(s) == sorted(t)
+        return Counter(s) == Counter(t)
