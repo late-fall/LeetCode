@@ -1,15 +1,13 @@
 class Solution:
     def longestPalindrome(self, s: str) -> int:
-        hashmap = {}
-        for c in s:
-            hashmap[c] = hashmap.get(c,0) + 1
+        sMap = Counter(s)
+        total = 0
+        odd = 0
+        for ch in sMap.keys():
+            if sMap[ch] % 2 == 1:
+                odd += 1
+            total += sMap[ch]
         
-        count = 0
-        for v in hashmap.values():
-            if v % 2 == 1:
-                count += 1
+        odd = 0 if odd <= 1 else odd - 1
+        return total - odd
         
-        if count < 2:
-            return len(s)
-        else:              
-            return len(s) - count + 1
