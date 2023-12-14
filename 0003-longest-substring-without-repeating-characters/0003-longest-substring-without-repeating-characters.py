@@ -1,8 +1,7 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        l, r = 0, 0
+        l, r, longest = 0, 0, 0
         dic = collections.defaultdict(int)
-        longest = 0
         
         while r < len(s):
             dic[s[r]] += 1
