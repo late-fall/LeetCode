@@ -1,16 +1,16 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
+        l, r = 0, 0
+        dic = collections.defaultdict(int)
         longest = 0
-        start = 0
-        chr_dict = collections.defaultdict(int)
         
-        for end in range(len(s)):
-            chr_dict[s[end]] += 1
-            
-            while chr_dict[s[end]] > 1:
-                chr_dict[s[start]] -= 1
-                start += 1
-            
-            longest = max(longest, end - start +1)
+        while r < len(s):
+            dic[s[r]] += 1
+            while dic[s[r]] > 1:
+                dic[s[l]] -= 1
+                l += 1
+            longest = max(longest, r - l + 1)
+            r += 1
         
         return longest
+                
