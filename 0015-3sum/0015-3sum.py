@@ -6,6 +6,8 @@ class Solution:
         dupset = set()
         
         for i in range(n-2):
+            if i > 0 and nums[i-1] == nums[i]:
+                continue
             j, k = i + 1, n - 1
             while j < k:
                 if nums[j] + nums[k] == -nums[i]:
