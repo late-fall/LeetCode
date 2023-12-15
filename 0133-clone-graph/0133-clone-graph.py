@@ -6,26 +6,25 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 """
 
+from typing import Optional
 class Solution:
-    def cloneGraph(self, node: 'Node') -> 'Node':
-        # NeetCode solution:
-        # use HashMap (like all graph problems)
-#         hashmap of 1->1, 2->2, 3->3, and so on..
-#         recursively start at node val of 1.
-#         O(n) = number of edges + vertices
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
+            return node
         
-        oldToNew = {} #hashmap to map old to new
+        q = deque()
+        q.append(node)
+        copies = {node.val: Node(node.val, [])}
         
-        def copyGraph(node):
-            if node in oldToNew:
-                return oldToNew[node]
+        while q:
+            cur = q.popleft()
+            cur_copy = copies[cur.val]
             
-            copy = Node(node.val)
-            oldToNew[node] = copy
-            for n in node.neighbors:
-                copy.neighbors.append(copyGraph(n))
-            return copy
-            
-        return copyGraph(node) if node else None
+            for nb in cur.neighbors:
+                if nb.val not in copies:
+                    copies[nb.val] = Node(nb.val, [])
+                    q.append(nb)
+                    
+                cur_copy.neighbors.append(copies[nb.val])
         
-        
+        return copies[node.val]
