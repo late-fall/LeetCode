@@ -1,7 +1,7 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         #topological sorting
-        graph = [[] for _ in range(numCourses)]
+        graph = {n : [] for n in range(numCourses)}
         indeg = [0] * numCourses
         
         for c, p in prerequisites:
