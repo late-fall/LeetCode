@@ -2,7 +2,7 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         #topological sorting
         graph = {n : [] for n in range(numCourses)}
-        indeg = [0] * numCourses
+        indeg = {n : 0 for n in range(numCourses)}
         
         for c, p in prerequisites:
             graph[p].append(c)
@@ -20,6 +20,7 @@ class Solution:
                 indeg[dest] -= 1
                 if indeg[dest] == 0:
                     q.append(dest)
+                    del indeg[dest]
         
-        return sum(indeg) == 0
+        return sum(indeg.values()) == 0
         
