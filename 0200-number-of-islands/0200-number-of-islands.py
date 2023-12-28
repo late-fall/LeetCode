@@ -3,34 +3,22 @@ class Solution:
         rows = len(grid)
         cols = len(grid[0])
         
-        visited = set()
+        def dfs(r, c):
+            if r >= rows or r < 0 or c >= cols or c < 0 or grid[r][c] == "0":
+                return
+            grid[r][c] = "0"
+            
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
         
-        def bfs(grid, r, c):
-            q = []
-            q.append((r,c))
-            visited.add((r,c))
-            
-            while q:
-                r, c = q.pop(0)
-                if r + 1 < rows and grid[r+1][c] == "1" and (r+1,c) not in visited:
-                    q.append((r+1, c))
-                    visited.add((r+1,c))
-                if r - 1 >= 0  and grid[r-1][c] == "1" and (r-1,c) not in visited:
-                    q.append((r-1, c))
-                    visited.add((r-1,c))
-                if c + 1 < cols and grid[r][c+1] == "1" and (r,c+1) not in visited:
-                    q.append((r, c+1))
-                    visited.add((r,c+1))
-                if c - 1 >= 0  and grid[r][c-1] == "1" and (r,c-1) not in visited:
-                    q.append((r, c-1))
-                    visited.add((r,c-1))
-            
-        cnt = 0 
+        count = 0
         
         for x in range(rows):
             for y in range(cols):
-                if grid[x][y] == "1" and (x,y) not in visited:
-                    bfs(grid, x, y)
-                    cnt += 1
+                if grid[x][y] == "1":
+                    count += 1
+                    dfs(x, y)
         
-        return cnt
+        return count
