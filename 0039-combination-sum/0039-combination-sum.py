@@ -1,24 +1,15 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        dp = {}
-        dp[0] = [[]]
-        dp[1] = []
-        
-        if target <2:
-            return dp[target]
-        
-        for n in range(2,target+1):
-            for c in candidates:
-                if n not in dp:
-                    dp[n] = []
-                if n-c in dp and n-c >= 0 and n-c != 1:
-                    for d in dp[n-c]:
-                        dp[n].append(d + [c])
-        
-        for e in dp[target]:
-            e.sort()
-        
-        result = []
-        [result.append(x) for x in dp[target] if x not in result]
+    
+        def dfs(nums, target, subset, res):
+            if target < 0:
+                return 
+            if target == 0:
+                res.append(subset)
+                return 
+            for i in range(len(nums)):
+                dfs(nums[i:], target-nums[i], subset+[nums[i]], res)
                 
-        return result
+        res = []
+        dfs(candidates, target, [], res)
+        return res
