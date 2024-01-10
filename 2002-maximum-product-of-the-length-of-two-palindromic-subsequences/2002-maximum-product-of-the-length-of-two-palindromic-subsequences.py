@@ -14,10 +14,10 @@ class Solution:
         n = len(s)
         pali = {} #binary representation of string : length
         
-        for mask in range(1, 1 << n): # 1 << n == 2 ** n, slightly more efficient. 
+        for mask in range(1, 2 ** n): # 1 << n == 2 ** n, slightly more efficient. 
             subseq = ""
             for i in range(n):
-                if mask & (1 << i):
+                if mask & (2 ** i):
                     subseq += s[i]
             if subseq == subseq[::-1]:
                 pali[mask] = len(subseq)
